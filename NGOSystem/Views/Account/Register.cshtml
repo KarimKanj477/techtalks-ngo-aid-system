@@ -7,18 +7,24 @@
         <form method="post">
             <div class="form-group mb-3">
                 <label>Name</label>
-                <input type="text" placeholder="Enter your name" name="Name" class="form-control" required />
+                <input type="text" placeholder="Enter your name" name="Name" class="form-control" required
+                pattern="^[A-Za-z\s]+$"
+                tittle="Name should contain only letters"/>
             </div>
 
             <div class="form-group mb-3">
                 <label>Email</label>
                
-                <input type="email" placeholder="Enter your email" name="Email" class="form-control" required />
+                <input type="email" placeholder="Enter your email" name="Email" class="form-control" required 
+                pattern="^[^@@]+@@[^@@]+\.[^@@]+$"
+                tittle="Please enter a valid email (example: name@gmail.com)"/>
             </div>
 
             <div class="form-group mb-3">
                 <label>Password</label>
-                <input type="password" placeholder="Enter your password" id="password"  name="Password" class="form-control" required minlength="6" />
+                <input type="password" placeholder="Enter your password" id="password"  name="Password" class="form-control" required 
+                pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$"
+                title="Password must be at least 6 characters and contain at least one letter and one number"/>
             </div>
             
             <div class="form-group mb-3">
