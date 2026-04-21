@@ -1,0 +1,77 @@
+﻿@model NGOSystem.Models.User
+
+<div class="container mt-5">
+    <div class="col-md-6 offset-md-3">
+        <h2 class="text-center">Register</h2>
+
+        <form method="post">
+            <div class="form-group mb-3">
+                <label>Name</label>
+                <input type="text" placeholder="Enter your name" name="Name" class="form-control" required
+                pattern="^[A-Za-z\s]+$"
+                tittle="Name should contain only letters"/>
+            </div>
+
+            <div class="form-group mb-3">
+                <label>Email</label>
+               
+                <input type="email" placeholder="Enter your email" name="Email" class="form-control" required 
+                pattern="^[^@@]+@@[^@@]+\.[^@@]+$"
+                tittle="Please enter a valid email (example: name@gmail.com)"/>
+            </div>
+
+            <div class="form-group mb-3">
+                <label>Password</label>
+                <input type="password" placeholder="Enter your password" id="password"  name="Password" class="form-control" required 
+                pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$"
+                title="Password must be at least 6 characters and contain at least one letter and one number"/>
+            </div>
+            
+            <div class="form-group mb-3">
+                <label>Confirm Password</label>
+                <input type="password" placeholder="Confirm your password" id="confirmPassword" class="form-control" required />
+            </div>
+            <input type="checkbox" onclick="togglePassword()"> Show Password
+            <p id="errorMsg" style="color:red;"></p>
+            <button type="submit" class="btn btn-primary w-100">Register</button>
+        </form>
+        
+        <p class="text-center mt-3">
+            Already have an account? <a href="/Account/Login">Login</a>
+        </p>
+    </div>
+    
+</div>
+
+<script>
+        function togglePassword() {
+        const pass = document.getElementById("password");
+        const confirm = document.getElementById("confirmPassword");
+
+        pass.type = pass.type === "password" ? "text" : "password";
+        confirm.type = confirm.type === "password" ? "text" : "password";
+    }
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        console.log("JS working");
+
+        const form = document.querySelector("form");
+        const password = document.getElementById("password");
+        const confirmPassword = document.getElementById("confirmPassword");
+        const errorMsg = document.getElementById("errorMsg");
+
+        form.addEventListener("submit", function (e) {
+            console.log("Form submitted");
+
+            if (password.value !== confirmPassword.value) {
+                e.preventDefault();
+                errorMsg.textContent = "Passwords do not match!";
+            } else {
+                errorMsg.textContent = "";
+            }
+        });
+
+    });
+</script>
