@@ -1,15 +1,21 @@
-﻿namespace NGOSystem.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace NGOSystem.Models
 {
     public class User
     {
         public int Id { get; set; }
 
-        public string Username { get; set; }
+        [Required]
+        public string Username { get; set; } = string.Empty;
 
-        public string Email { get; set; }
+        [Required]
+        public string Email { get; set; } = string.Empty;
 
-        public string Password { get; set; }
+        [Required]
+        public string Password { get; set; } = string.Empty;
 
-        public string Role { get; set; } // Admin or User
+        [Required]
+        public string Role { get; set; } = string.Empty;
     }
 }

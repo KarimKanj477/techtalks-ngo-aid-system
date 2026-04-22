@@ -1,7 +1,17 @@
-﻿<h2>Login</h2>
+﻿﻿<h2>Login</h2>
 
 <form method="post">
-    <input type="text" placeholder="Email" /> <br><br>
-    <input type="password" placeholder="Password" /> <br><br>
+    <div>
+        <label>Email</label><br />
+        <input type="email" name="Email" required />
+    </div>
+
+    <div>
+        <label>Password</label><br />
+        <input type="password" name="Password" required />
+    </div>
+
+    <br />
     <button type="submit">Login</button>
 </form>
+<p>Don't have an account? <a href="/Account/Register">Register</a></p>
