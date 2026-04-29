@@ -10,5 +10,6 @@ namespace NGOSystem.Data
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<AidRequest> AidRequests { get; set; }
     }
 }

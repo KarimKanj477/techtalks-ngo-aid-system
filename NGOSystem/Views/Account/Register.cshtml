@@ -2,11 +2,17 @@
 <div class="container mt-5">
     <div class="col-md-6 offset-md-3">
         <h2 class="text-center">Register</h2>
+        <div asp-validation-summary="All" class="text-danger"></div>
 
-        <form method="post">
+            @if (ViewBag.Error != null)
+            {
+                <p class="text-danger">@ViewBag.Error</p>
+            }
+
+        <form asp-action="Register" asp-controller="Account" method="post">
             <div class="form-group mb-3">
                 <label>Name</label>
-                <input type="text" placeholder="Enter your name" name="Name" class="form-control" required
+                <input type="text" placeholder="Enter your name" name="UserName" class="form-control" required
                 pattern="^[A-Za-z\s]+$"
                 tittle="Name should contain only letters"/>
             </div>
@@ -32,6 +38,15 @@
             </div>
             <input type="checkbox" onclick="togglePassword()"> Show Password
             <p id="errorMsg" style="color:red;"></p>
+           <div class="form-group mb-3">
+            <label>Role</label>
+            <select name="Role" class="form-control" required>
+                <option value="">Select Role</option>
+                <option value="Admin">Admin</option>
+                <option value="User">User</option>
+            </select>
+</div>
+  
             <button type="submit" class="btn btn-primary w-100">Register</button>
         </form>
         
