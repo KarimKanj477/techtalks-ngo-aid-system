@@ -1,0 +1,20 @@
+﻿@model List<NGOSystem.Models.AidRequest>
+
+<h2>My Requests</h2>
+
+<table class="table">
+    <tr>
+        <th>Title</th>
+        <th>Location</th>
+        <th>Status</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Title</td>
+            <td>@item.Location</td>
+            <td>@item.Status</td>
+        </tr>
+    }
+</table>

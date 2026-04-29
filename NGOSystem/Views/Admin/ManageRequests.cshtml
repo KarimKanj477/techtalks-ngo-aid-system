@@ -1,0 +1,27 @@
+﻿@model List<NGOSystem.Models.AidRequest>
+
+<h2>Manage Aid Requests</h2>
+
+<table class="table">
+    <tr>
+        <th>Title</th>
+        <th>Location</th>
+        <th>User</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Title</td>
+            <td>@item.Location</td>
+            <td>@item.UserEmail</td>
+            <td>@item.Status</td>
+            <td>
+                <a href="/Admin/Approve/@item.Id" class="btn btn-success btn-sm">Approve</a>
+                <a href="/Admin/Reject/@item.Id" class="btn btn-danger btn-sm">Reject</a>
+            </td>
+        </tr>
+    }
+</table>
