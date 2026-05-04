@@ -1,6 +1,18 @@
 ﻿@model List<NGOSystem.Models.AidRequest>
 
 <h2>Manage Aid Requests</h2>
+<form method="get" asp-action="ManageRequests" class="mb-3 d-flex">
+    <input type="text" name="search" value="@ViewBag.Search" class="form-control me-2"
+           placeholder="Search by title, location, or user email" />
+
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+<div class="mb-3">
+    <a asp-controller="Admin" asp-action="ManageRequests" class="btn btn-secondary">All</a>
+    <a asp-controller="Admin" asp-action="ManageRequests" asp-route-status="Pending" class="btn btn-warning">Pending</a>
+    <a asp-controller="Admin" asp-action="ManageRequests" asp-route-status="Approved" class="btn btn-success">Approved</a>
+    <a asp-controller="Admin" asp-action="ManageRequests" asp-route-status="Rejected" class="btn btn-danger">Rejected</a>
+</div>
 
 <table class="table">
     <tr>
@@ -19,9 +31,17 @@
             <td>@item.UserEmail</td>
             <td>@item.Status</td>
             <td>
+                <a href="/Admin/Edit/@item.Id" class="btn btn-warning btn-sm">Edit</a>
                 <a href="/Admin/Approve/@item.Id" class="btn btn-success btn-sm">Approve</a>
                 <a href="/Admin/Reject/@item.Id" class="btn btn-danger btn-sm">Reject</a>
+                <a href="/Admin/Delete/@item.Id" class="btn btn-dark btn-sm"
+                   onclick="return confirm('Are you sure you want to delete this request?');">
+                    Delete
+                </a>
             </td>
+
+            
+        
         </tr>
     }
 </table>

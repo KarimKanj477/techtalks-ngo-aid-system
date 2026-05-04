@@ -1,17 +1,50 @@
-﻿<h2>User Dashboard</h2>
+﻿@{
+    ViewData["Title"] = "User Dashboard";
+}
 
-<p>Welcome @Context.Session.GetString("Username") </p>
+<div class="container mt-5">
+    <h2 class="mb-4">Welcome @Context.Session.GetString("Username") </h2>
 
-<ul>
-    <li>
-        <a href="/AidRequest/MyRequests">View Aid Requests</a>
-    </li>
+    <div class="row">
 
-    <li>
-        <a href="/AidRequest/Create">Request Help</a>
-    </li>
+        
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title">View Aid Requests</h5>
+                    <p class="card-text">See all available aid requests.</p>
+                    <a asp-controller="AidRequest" asp-action="Index" class="btn btn-primary">
+                        View
+                    </a>
+                </div>
+            </div>
+        </div>
 
-    <li>
-        <a href="/AidRequest/MyRequests">My Requests</a>
-    </li>
-</ul>
+      
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Request Help</h5>
+                    <p class="card-text">Submit a new aid request.</p>
+                    <a asp-controller="AidRequest" asp-action="Create" class="btn btn-success">
+                        Request
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title">My Requests</h5>
+                    <p class="card-text">Track your requests and status.</p>
+                    <a asp-controller="AidRequest" asp-action="MyRequests" class="btn btn-warning">
+                        View
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

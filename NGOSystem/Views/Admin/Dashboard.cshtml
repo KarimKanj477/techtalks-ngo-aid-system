@@ -1,16 +1,33 @@
-﻿<h2>Admin Dashboard</h2>
+﻿@{
+    ViewData["Title"] = "Admin Dashboard";
+}
 
-<p>Welcome Admin </p>
+<div class="container mt-5">
+    <h2 class="mb-4">Admin Dashboard </h2>
 
-<ul>
-    <li>
-        <a asp-controller="Admin" asp-action="ManageRequests">
-            Manage Aid Requests
-        </a>
-    </li>
-    <li>
-        <a asp-controller="Admin" asp-action="ManageUsers">
-            Manage Users
-        </a>
-    </li>
-</ul>
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Manage Aid Requests</h5>
+                    <p class="card-text">Review, approve, or reject aid requests.</p>
+                    <a asp-controller="Admin" asp-action="ManageRequests" class="btn btn-primary">
+                        Open Requests
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Manage Users</h5>
+                    <p class="card-text">View registered users and their roles.</p>
+                    <a asp-controller="Admin" asp-action="ManageUsers" class="btn btn-success">
+                        Open Users
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

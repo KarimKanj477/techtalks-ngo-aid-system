@@ -23,7 +23,7 @@ namespace NGOSystem.Controllers
             return View();
         }
 
-        public IActionResult ManageRequests()
+        public IActionResult ManageRequests(string status, string search)
         {
             var role = HttpContext.Session.GetString("UserRole");
 
@@ -32,9 +32,25 @@ namespace NGOSystem.Controllers
                 return RedirectToAction("Login", "Account");
             }
 
-            var requests = _context.AidRequests.ToList();
+            var requests = _context.AidRequests.AsQueryable();
 
-            return View(requests);
+            if (!string.IsNullOrEmpty(status))
+            {
+                requests = requests.Where(r => r.Status == status);
+            }
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                requests = requests.Where(r =>
+                    r.Title.Contains(search) ||
+                    r.Location.Contains(search) ||
+                    r.UserEmail.Contains(search));
+            }
+
+            ViewBag.SelectedStatus = status;
+            ViewBag.Search = search;
+
+            return View(requests.ToList());
         }
 
         public IActionResult ManageUsers()
@@ -70,6 +86,18 @@ namespace NGOSystem.Controllers
             if (request != null)
             {
                 request.Status = "Rejected";
+                _context.SaveChanges();
+            }
+
+            return RedirectToAction("ManageRequests");
+        }
+        public IActionResult Delete(int id)
+        {
+            var request = _context.AidRequests.FirstOrDefault(r => r.Id == id);
+
+            if (request != null)
+            {
+                _context.AidRequests.Remove(request);
                 _context.SaveChanges();
             }
 

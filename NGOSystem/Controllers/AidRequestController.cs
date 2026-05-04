@@ -27,6 +27,11 @@ public class AidRequestController : Controller
 
         return RedirectToAction("MyRequests");
     }
+    public IActionResult Index()
+    {
+        var requests = _context.AidRequests.ToList();
+        return View(requests);
+    }
 
     public IActionResult MyRequests()
     {
