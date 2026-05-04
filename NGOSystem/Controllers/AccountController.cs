@@ -68,6 +68,31 @@ namespace NGOSystem.Controllers
             ViewBag.Error = "Invalid email or password";
             return View();
         }
+        public IActionResult Edit(int id)
+        {
+            var request = _context.AidRequests.FirstOrDefault(r => r.Id == id);
+
+            if (request == null)
+            {
+                return RedirectToAction("ManageRequests");
+            }
+
+            return View(request);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(AidRequest request)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.AidRequests.Update(request);
+                _context.SaveChanges();
+
+                return RedirectToAction("ManageRequests");
+            }
+
+            return View(request);
+        }
 
         public IActionResult Logout()
         {

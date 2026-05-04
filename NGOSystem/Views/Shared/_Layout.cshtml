@@ -19,35 +19,60 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                   <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                </ul>
+    <ul class="navbar-nav flex-grow-1">
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Home</a>
+        </li>
+    </ul>
 
-                    <ul class="navbar-nav ms-auto">
-                        @if (Context.Session.GetString("Username") != null)
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="User" asp-action="Dashboard">Dashboard</a>
-                            </li>
+    <ul class="navbar-nav ms-auto align-items-center">
+        @if (Context.Session.GetString("Username") != null)
+        {
+            <li class="nav-item me-3">
+                <span class="navbar-text">
+                    👤 @Context.Session.GetString("Username")
+                </span>
+            </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Account" asp-action="Logout">Logout</a>
-                            </li>
-                        }
-                        else
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Login</a>
-                            </li>
+            @if (Context.Session.GetString("UserRole") == "Admin")
+            {
+                <li class="nav-item">
+                    <a class="btn btn-outline-primary me-2" asp-controller="Admin" asp-action="Dashboard">
+                        Admin Dashboard
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li class="nav-item">
+                    <a class="btn btn-outline-success me-2" asp-controller="User" asp-action="Dashboard">
+                        Dashboard
+                    </a>
+                </li>
+            }
 
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Account" asp-action="Register">Register</a>
-                            </li>
-                        }
-                    </ul>
-                </div>
+            <li class="nav-item">
+                <a class="btn btn-outline-danger" asp-controller="Account" asp-action="Logout">
+                    Logout
+                </a>
+            </li>
+        }
+        else
+        {
+            <li class="nav-item">
+                <a class="btn btn-outline-primary me-2" asp-controller="Account" asp-action="Login">
+                    Login
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="btn btn-outline-success" asp-controller="Account" asp-action="Register">
+                    Register
+                </a>
+            </li>
+        }
+    </ul>
+</div>
             </div>
         </nav>
     </header>

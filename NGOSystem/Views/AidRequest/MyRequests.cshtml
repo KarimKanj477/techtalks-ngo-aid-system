@@ -1,20 +1,44 @@
 ﻿@model List<NGOSystem.Models.AidRequest>
 
-<h2>My Requests</h2>
+@{
+    ViewData["Title"] = "My Requests";
+}
 
-<table class="table">
-    <tr>
-        <th>Title</th>
-        <th>Location</th>
-        <th>Status</th>
-    </tr>
+<div class="container mt-5">
+    <h2 class="mb-4">My Aid Requests</h2>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@item.Title</td>
-            <td>@item.Location</td>
-            <td>@item.Status</td>
-        </tr>
-    }
-</table>
+    <table class="table table-bordered table-hover shadow-sm">
+        <thead class="table-dark">
+            <tr>
+                <th>Title</th>
+                <th>Location</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Title</td>
+                    <td>@item.Location</td>
+
+                    <td>
+                        @if (item.Status == "Pending")
+                        {
+                            <span class="badge bg-warning text-dark">Pending</span>
+                        }
+                        else if (item.Status == "Approved")
+                        {
+                            <span class="badge bg-success">Approved</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">Rejected</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
