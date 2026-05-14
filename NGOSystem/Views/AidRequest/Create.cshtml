@@ -1,9 +1,49 @@
 ﻿<h2>Request Aid</h2>
 
 <form method="post">
-    <input name="Title" placeholder="Title" class="form-control mb-2" />
-    <textarea name="Description" placeholder="Description" class="form-control mb-2"></textarea>
-    <input name="Location" placeholder="Location" class="form-control mb-2" />
-
+    <input name="Title"
+           placeholder="Title"
+           class="form-control mb-2"
+           required
+           minlength="3"
+           maxlength="50"
+           title="Title must be between 3 and 50 characters" />
+    <textarea name="Description"
+              placeholder="Description"
+              class="form-control mb-2"
+              required
+              minlength="10"
+              maxlength="300"
+              title="Description must be between 10 and 300 characters"></textarea>
+    <input name="Location"
+           id="location"
+           placeholder="Location"
+           class="form-control mb-2"
+           required
+           pattern="^[A-Za-z\s]+$"
+           title="Location should contain letters only" />
+    <p id="errorMsg" style="color:red;"></p>
     <button class="btn btn-primary">Submit Request</button>
 </form>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const form = document.querySelector("form");
+        const location = document.getElementById("location");
+        const errorMsg = document.getElementById("errorMsg");
+
+        form.addEventListener("submit", function (e) {
+
+            const locationPattern = /^[A-Za-z\s]+$/;
+
+            if (!locationPattern.test(location.value)) {
+                e.preventDefault();
+                errorMsg.textContent = "Location must contain letters only.";
+            }
+            else {
+                errorMsg.textContent = "";
+            }
+        });
+
+    });
+</script>
