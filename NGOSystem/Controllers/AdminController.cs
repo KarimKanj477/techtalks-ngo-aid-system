@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NGOSystem.Data;
+using NGOSystem.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace NGOSystem.Controllers
 {
@@ -13,12 +15,22 @@ namespace NGOSystem.Controllers
         }
         public IActionResult Dashboard()
         {
-            var role = HttpContext.Session.GetString("UserRole");
-
-            if (role != "Admin")
+            if (HttpContext.Session.GetString("UserRole") != "Admin")
             {
                 return RedirectToAction("Login", "Account");
             }
+
+            ViewBag.TotalRequests =
+                _context.AidRequests.Count();
+
+            ViewBag.PendingRequests =
+                _context.AidRequests.Count(r => r.Status == "Pending");
+
+            ViewBag.ApprovedRequests =
+                _context.AidRequests.Count(r => r.Status == "Approved");
+
+            ViewBag.RejectedRequests =
+                _context.AidRequests.Count(r => r.Status == "Rejected");
 
             return View();
         }
@@ -102,6 +114,23 @@ namespace NGOSystem.Controllers
             }
 
             return RedirectToAction("ManageRequests");
+        }
+
+        public IActionResult Details(int id)
+        { 
+            if (HttpContext.Session.GetString("UserRole") != "Admin")
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            var request = _context.AidRequests.FirstOrDefault(r => r.Id == id);
+
+            if (request == null)
+            {
+                return NotFound();
+            }
+
+            return View(request);
         }
     }
 }
