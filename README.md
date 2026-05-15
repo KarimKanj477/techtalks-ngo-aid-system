@@ -1,5 +1,21 @@
 # NGO Aid Distribution Accountability System
 
+ASP.NET Core MVC web application for managing NGO aid requests.
+
+## Features
+- User Registration/Login
+- Role-based Access (Admin/User)
+- Aid Request Submission
+- Request Approval/Rejection
+- Dashboard Management
+- Request Filtering/Search
+- Responsive UI
+
+## Technologies
+- ASP.NET Core MVC
+- Entity Framework Core
+- SQL Server
+- Bootstrap
 ## Description
 This project is an enterprise-level ASP.NET Core web application designed to manage NGO aid distribution efficiently and transparently.
 
@@ -8,19 +24,9 @@ This project is an enterprise-level ASP.NET Core web application designed to man
 - Prevent duplication of aid delivery
 - Improve transparency and accountability
 
-##  Features
-- Aid distribution tracking
-- Volunteer/team management
-- Location-based delivery records
-- Timestamp logging
-- Audit trail system
-- Verification mechanisms
 
-##  Technologies Used
-- ASP.NET Core MVC
-- C#
-- MySQL
-- HTML, CSS, JavaScript
+
+
 
 ## 📂 Project Structure
 - Models
