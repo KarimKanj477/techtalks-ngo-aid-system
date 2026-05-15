@@ -1,0 +1,68 @@
+﻿@model NGOSystem.Models.AidRequest
+
+@{
+    ViewData["Title"] = "Request Details";
+}
+
+<div class="container py-5">
+
+    <div class="card shadow-sm border-0">
+
+        <div class="card-body p-5">
+
+            <h2 class="fw-bold mb-4">
+                Request Details
+            </h2>
+
+            <hr />
+
+            <div class="mb-3">
+                <strong>Title:</strong>
+                <p>@Model.Title</p>
+            </div>
+
+            <div class="mb-3">
+                <strong>Description:</strong>
+                <p>@Model.Description</p>
+            </div>
+
+            <div class="mb-3">
+                <strong>Location:</strong>
+                <p>@Model.Location</p>
+            </div>
+
+            <div class="mb-3">
+                <strong>Status:</strong>
+
+                @if (Model.Status == "Pending")
+                {
+                    <span class="badge bg-warning text-dark">
+                        Pending
+                    </span>
+                }
+                else if (Model.Status == "Approved")
+                {
+                    <span class="badge bg-success">
+                        Approved
+                    </span>
+                }
+                else
+                {
+                    <span class="badge bg-danger">
+                        Rejected
+                    </span>
+                }
+
+            </div>
+
+            <a asp-controller="Admin"
+                   asp-action="ManageRequests"
+                   class="btn btn-secondary mt-3">
+                Back to Requests
+            </a>
+
+        </div>
+
+    </div>
+
+</div>

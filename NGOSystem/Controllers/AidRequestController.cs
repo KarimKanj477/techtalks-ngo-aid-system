@@ -19,13 +19,20 @@ public class AidRequestController : Controller
     [HttpPost]
     public IActionResult Create(AidRequest request)
     {
-        request.Status = "Pending";
-        request.UserEmail = HttpContext.Session.GetString("UserEmail");
+        if (ModelState.IsValid)
+        {
+            request.Status = "Pending";
+            request.UserEmail = HttpContext.Session.GetString("UserEmail");
 
-        _context.AidRequests.Add(request);
-        _context.SaveChanges();
+            _context.AidRequests.Add(request);
+            _context.SaveChanges();
 
-        return RedirectToAction("MyRequests");
+            TempData["Success"] = "Request submitted successfully!";
+
+            return RedirectToAction("MyRequests");
+        }
+
+        return View(request);
     }
     public IActionResult Index()
     {
